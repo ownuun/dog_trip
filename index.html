@@ -4273,25 +4273,38 @@
             const form = document.getElementById('notification-form');
             const successMessage = document.getElementById('notification-success');
 
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
                 const email = document.getElementById('notification-email').value;
                 const type = "서비스 오픈 알림";
 
-                // Simulate form submission
-                setTimeout(() => {
-                    form.style.display = 'none';
-                    successMessage.style.display = 'block';
+                try {
+                    const response = await fetch('/api/subscribe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            kind: 'DOWNLOAD',
+                            website: '' // honeypot
+                        })
+                    });
 
-                    // Store notification data (in real app, send to server)
-                    const notificationData = {
-                        email: email,
-                        type: type,
-                        timestamp: new Date().toISOString()
-                    };
-                    localStorage.setItem('notification_subscription', JSON.stringify(notificationData));
-                }, 1000);
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        successMessage.textContent = '신청 완료! 서비스 시작 시 이메일로 알려드릴게요.';
+                    } else {
+                        alert(data.error || '신청에 실패했습니다.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('네트워크 오류가 발생했습니다.');
+                }
             });
 
             // Handle helper notification form submission
@@ -4299,25 +4312,38 @@
             const helperSuccessMessage = document.getElementById('helper-notification-success');
 
             if (helperForm) {
-                helperForm.addEventListener('submit', function (e) {
+                helperForm.addEventListener('submit', async function (e) {
                     e.preventDefault();
 
                     const email = document.getElementById('helper-notification-email').value;
                     const type = "서비스 오픈 알림";
 
-                    // Simulate form submission
-                    setTimeout(() => {
-                        helperForm.style.display = 'none';
-                        helperSuccessMessage.style.display = 'block';
+                    try {
+                        const response = await fetch('/api/subscribe', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: email,
+                                kind: 'HELPER',
+                                website: '' // honeypot
+                            })
+                        });
 
-                        // Store notification data (in real app, send to server)
-                        const helperNotificationData = {
-                            email: email,
-                            type: type,
-                            timestamp: new Date().toISOString()
-                        };
-                        localStorage.setItem('helper_notification_subscription', JSON.stringify(helperNotificationData));
-                    }, 1000);
+                        const data = await response.json();
+
+                        if (response.ok) {
+                            helperForm.style.display = 'none';
+                            helperSuccessMessage.style.display = 'block';
+                            helperSuccessMessage.textContent = '신청 완료! 도우미 모집 안내를 이메일로 드릴게요.';
+                        } else {
+                            alert(data.error || '신청에 실패했습니다.');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('네트워크 오류가 발생했습니다.');
+                    }
                 });
             }
         }

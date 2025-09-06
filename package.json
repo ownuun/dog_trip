@@ -1,0 +1,25 @@
+{
+    "name": "dog-trip",
+    "version": "1.0.0",
+    "description": "반려견 여행 서비스 랜딩페이지",
+    "main": "index.html",
+    "scripts": {
+        "dev": "vercel dev",
+        "build": "echo 'No build step needed for static site'",
+        "start": "npx serve ."
+    },
+    "dependencies": {
+        "pg": "^8.11.3"
+    },
+    "devDependencies": {
+        "vercel": "^32.0.0"
+    },
+    "keywords": [
+        "반려견",
+        "여행",
+        "펫시터",
+        "랜딩페이지"
+    ],
+    "author": "ownuun",
+    "license": "MIT"
+}
