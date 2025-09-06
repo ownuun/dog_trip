@@ -1,0 +1,4405 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Trip - 여행 중에도, 우리 강아지 안심 돌봄</title>
+    <meta name="description" content="식당/관람 동안 근처의 검증된 도우미를 10분 내 매칭. 믿을 수 있는 연결, 순간 필요에 즉시, 현실적인 안전.">
+    <meta name="keywords" content="강아지 돌봄, 여행, 펫시팅, 도우미, 매칭, 안전">
+    <meta name="author" content="Dog Trip">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dog Trip - 여행 중에도, 우리 강아지 안심 돌봄">
+    <meta property="og:description" content="식당/관람 동안 근처의 검증된 도우미를 10분 내 매칭">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dog Trip - 여행 중에도, 우리 강아지 안심 돌봄">
+    <meta name="twitter:description" content="식당/관람 동안 근처의 검증된 도우미를 10분 내 매칭">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/dog-trip-logo.png" type="image/png">
+
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #D2FF8D;
+            text-decoration: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .language-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 4px;
+            margin-right: 1rem;
+        }
+
+        .language-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            color: #ccc;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .language-btn.active {
+            background: #D2FF8D;
+            color: #000;
+        }
+
+        .language-btn:hover:not(.active) {
+            color: #fff;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #F4F1E9;
+            border-color: #F4F1E9;
+        }
+
+        .btn-secondary:hover {
+            background-color: #F4F1E9;
+            color: #000;
+        }
+
+        .btn-primary {
+            background-color: #D2FF8D;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: #B8E66B;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 10rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url('images/hero/hero-background-2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .highlight {
+            color: #D2FF8D;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.125rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            margin: 4rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-emoji {
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+            background-color: #D2FF8D;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: #F4F1E9;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            font-size: 0.875rem;
+            color: #999;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        /* 3D Carousel Container */
+        .phone-mockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center;
+        }
+
+        .phone-frame.active {
+            transform: scale(1) translateX(0) translateZ(0);
+            opacity: 1;
+            z-index: 20;
+        }
+
+        .phone-frame.next {
+            transform: scale(0.9) translateX(40%) translateZ(-100px);
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        .phone-frame.prev {
+            transform: scale(0.9) translateX(-40%) translateZ(-100px);
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        .phone-frame.hidden {
+            transform: scale(0.8) translateX(0) translateZ(-200px);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* shadcn-style App Header */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #D2FF8D 0%, #B8E66B 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(210, 255, 141, 0.3);
+        }
+
+        .app-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #F4F1E9;
+            margin: 0;
+        }
+
+        .app-subtitle {
+            font-size: 0.625rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+
+        /* shadcn-style Status Card */
+        .status-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .status-icon.searching {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3B82F6;
+        }
+
+        .status-icon.matched {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22C55E;
+        }
+
+        .status-icon.monitoring {
+            background: rgba(168, 85, 247, 0.1);
+            color: #A855F7;
+        }
+
+        .status-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #F4F1E9;
+            margin: 0;
+        }
+
+        .status-description {
+            font-size: 0.625rem;
+            color: #999;
+            margin: 0.5rem 0 0 0;
+        }
+
+        /* shadcn-style Progress Bar */
+        .progress-container {
+            margin-bottom: 1rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .progress-percentage {
+            font-size: 0.75rem;
+            color: #D2FF8D;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D2FF8D 0%, #B8E66B 100%);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .progress-fill.screen1 {
+            width: 75%;
+        }
+
+        .progress-fill.screen2 {
+            width: 45%;
+        }
+
+
+        /* shadcn-style Feature Tags */
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-tag {
+            background: rgba(210, 255, 141, 0.1);
+            border: 1px solid rgba(210, 255, 141, 0.2);
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            color: #D2FF8D;
+            font-weight: 500;
+        }
+
+        /* shadcn-style Action Button */
+        .action-button {
+            width: 100%;
+            background: linear-gradient(135deg, #D2FF8D 0%, #B8E66B 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(210, 255, 141, 0.3);
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+        }
+
+        /* shadcn-style Chart Components */
+        .chart-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #F4F1E9;
+            margin: 0;
+        }
+
+        .chart-subtitle {
+            font-size: 0.625rem;
+            color: #999;
+            margin: 0.25rem 0 0 0;
+        }
+
+        .chart-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #D2FF8D;
+        }
+
+        /* Progress Chart */
+        .progress-chart {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            margin: 1rem 0;
+        }
+
+        .progress-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress-chart .progress-bar {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .progress-chart .progress-fill {
+            fill: none;
+            stroke: url(#progressGradient);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 25;
+            animation: progressAnimation 2s ease-in-out;
+        }
+
+        @keyframes progressAnimation {
+            from {
+                stroke-dashoffset: 100;
+            }
+
+            to {
+                stroke-dashoffset: 25;
+            }
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.625rem;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 0.5rem;
+            color: #999;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table td {
+            padding: 0.5rem;
+            color: #F4F1E9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .data-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .table-value {
+            font-weight: 600;
+            color: #D2FF8D;
+        }
+
+        .table-trend {
+            font-size: 0.625rem;
+            color: #22C55E;
+        }
+
+        .table-trend.down {
+            color: #EF4444;
+        }
+
+        /* Mini Chart */
+        .mini-chart {
+            width: 100%;
+            height: 40px;
+            margin: 0.5rem 0;
+        }
+
+        .mini-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-line {
+            fill: none;
+            stroke: #D2FF8D;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .chart-area {
+            fill: url(#areaGradient);
+            opacity: 0.3;
+        }
+
+        /* Stats Grid with Charts */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #D2FF8D;
+            margin: 0;
+        }
+
+        .stat-label {
+            font-size: 0.625rem;
+            color: #999;
+            margin: 0.25rem 0 0 0;
+        }
+
+        /* Metric Cards */
+        .metric-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-title {
+            font-size: 0.75rem;
+            color: #999;
+            margin: 0;
+        }
+
+        .metric-value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #D2FF8D;
+            margin: 0;
+        }
+
+        .metric-change {
+            font-size: 0.625rem;
+            color: #22C55E;
+            margin: 0;
+        }
+
+        .metric-change.negative {
+            color: #EF4444;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        /* English version specific alignment */
+        [lang="en"] .calendar-header {
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .calendar-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+
+        .calendar-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .calendar-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .calendar-month {
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.2;
+            min-width: 60px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-weekdays {
+            display: contents;
+        }
+
+        .weekday {
+            text-align: center;
+            font-size: 0.625rem;
+            color: #9CA3AF;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .calendar-days {
+            display: contents;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .day:hover {
+            background: rgba(210, 255, 141, 0.2);
+        }
+
+        .day.other-month {
+            color: #6B7280;
+        }
+
+        .day.today {
+            background: #D2FF8D;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .day.selected {
+            background: #A855F7;
+            color: #fff;
+        }
+
+        /* Booking Styles */
+        .bookings-section {
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 0.45rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .section-title.small-title {
+            font-size: 1.2rem;
+        }
+
+        .booking-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .booking-time {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .booking-status {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.625rem;
+            font-weight: 500;
+        }
+
+        .booking-status.confirmed {
+            background: #D2FF8D;
+            color: #000;
+        }
+
+        .booking-status.pending {
+            background: #F59E0B;
+            color: #000;
+        }
+
+        .booking-details {
+            margin-bottom: 12px;
+        }
+
+        .booking-helper {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .booking-service {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+            margin-bottom: 2px;
+        }
+
+        .booking-duration {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+        }
+
+        .booking-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn.primary {
+            background: #D2FF8D;
+            color: #000;
+        }
+
+        .action-btn.primary:hover {
+            background: #B8E66B;
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .quick-action-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .quick-action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .action-icon {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .action-text {
+            font-size: 0.625rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Profile Styles */
+        .profile-section {
+            margin-bottom: 16px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-avatar {
+            position: relative;
+        }
+
+        .avatar-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .avatar-status {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+
+        .avatar-status.online {
+            background: #22C55E;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .profile-email {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+            margin-bottom: 2px;
+        }
+
+        .profile-verified {
+            font-size: 0.5rem;
+            color: #22C55E;
+        }
+
+        .edit-profile-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Pet Section */
+        .pet-section {
+            margin-bottom: 16px;
+        }
+
+        .pet-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pet-avatar {
+            position: relative;
+        }
+
+        .pet-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .pet-details {
+            flex: 1;
+        }
+
+        .pet-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .pet-breed {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+            margin-bottom: 2px;
+        }
+
+        .pet-age {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+        }
+
+        .pet-status {
+            display: flex;
+            align-items: center;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.625rem;
+            font-weight: 500;
+        }
+
+        .status-badge.healthy {
+            background: #D2FF8D;
+            color: #000;
+        }
+
+        /* Settings Styles */
+        .settings-section {
+            margin-bottom: 16px;
+        }
+
+        .settings-menu {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .setting-icon {
+            font-size: 1.25rem;
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .setting-content {
+            flex: 1;
+        }
+
+        .setting-title {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .setting-desc {
+            font-size: 0.5rem;
+            color: #9CA3AF;
+        }
+
+        .setting-toggle {
+            position: relative;
+        }
+
+        .setting-toggle input[type="checkbox"] {
+            display: none;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .setting-toggle input[type="checkbox"]:checked+.toggle-switch {
+            background: #D2FF8D;
+        }
+
+        .setting-toggle input[type="checkbox"]:checked+.toggle-switch::before {
+            transform: translateX(20px);
+        }
+
+        .setting-arrow {
+            color: #9CA3AF;
+            font-size: 1.25rem;
+        }
+
+        /* Stats Summary */
+        .stats-summary {
+            display: flex;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #D2FF8D;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+        }
+
+        /* Service Selection Styles */
+        .service-selection {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-cards {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .service-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card.active {
+            background: rgba(210, 255, 141, 0.2);
+            border-color: #D2FF8D;
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .service-desc {
+            font-size: 0.7rem;
+            color: #9CA3AF;
+            margin-bottom: 4px;
+        }
+
+        .service-price {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #D2FF8D;
+        }
+
+        /* Duration Selection */
+        .duration-selection {
+            margin-bottom: 16px;
+        }
+
+        .duration-options {
+            display: flex;
+            gap: 8px;
+        }
+
+        .duration-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.625rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .duration-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .duration-btn.active {
+            background: #D2FF8D;
+            color: #000;
+            border-color: #D2FF8D;
+        }
+
+        /* Location & Time Section */
+        .location-time-section {
+            margin-bottom: 16px;
+        }
+
+        .location-card,
+        .time-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .location-icon,
+        .time-icon {
+            font-size: 1.25rem;
+        }
+
+        .location-info,
+        .time-info {
+            flex: 1;
+        }
+
+        .location-title,
+        .time-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .location-address,
+        .time-datetime {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+        }
+
+        .location-btn,
+        .time-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.625rem;
+            cursor: pointer;
+        }
+
+        .location-btn:hover,
+        .time-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Matching Progress */
+        .matching-progress {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .progress-percentage {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #D2FF8D;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D2FF8D, #B8E66B);
+            border-radius: 3px;
+            animation: progressAnimation 2s ease-in-out;
+        }
+
+        @keyframes progressAnimation {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 75%;
+            }
+        }
+
+        .progress-status {
+            font-size: 0.625rem;
+            color: #9CA3AF;
+            text-align: center;
+        }
+
+        /* Emergency Button */
+        .quick-action-btn.emergency {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #EF4444;
+        }
+
+        .quick-action-btn.emergency:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        .quick-action-btn.emergency .action-icon {
+            color: #EF4444;
+        }
+
+        /* Splash Screen Styles */
+        .splash-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .splash-logo {
+            margin-bottom: 2rem;
+            animation: logoFloat 2s ease-in-out infinite;
+            background: #D2FF8D;
+            border-radius: 15px;
+            padding: 12px;
+            box-shadow: 0 8px 32px rgba(210, 255, 141, 0.3);
+            display: inline-block;
+        }
+
+        .logo-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .splash-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #D2FF8D;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .splash-subtitle {
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            margin-bottom: 3rem;
+            line-height: 1.4;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .splash-loading {
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #D2FF8D;
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite both;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0s;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 30;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #D2FF8D;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .nav-dot:hover {
+            background: rgba(210, 255, 141, 0.6);
+        }
+
+        /* Navigation Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 30;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(210, 255, 141, 0.2);
+            border-color: #D2FF8D;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.left {
+            left: 20px;
+        }
+
+        .carousel-arrow.right {
+            right: 20px;
+        }
+
+        .carousel-arrow svg {
+            width: 20px;
+            height: 20px;
+            color: #F4F1E9;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .phone-frame {
+                width: 240px;
+                height: 480px;
+            }
+
+            .phone-frame.next {
+                transform: scale(0.85) translateX(30%) translateZ(-50px);
+            }
+
+            .phone-frame.prev {
+                transform: scale(0.85) translateX(-30%) translateZ(-50px);
+            }
+
+            .carousel-arrow {
+                display: none;
+            }
+
+            .phone-mockup {
+                height: 500px;
+            }
+
+            .service-icon img {
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+
+            .service-cards {
+                justify-content: center;
+                align-items: center;
+            }
+
+            .service-title {
+                font-size: 0.7rem;
+            }
+
+            .service-desc {
+                font-size: 0.65rem;
+            }
+
+            .service-price {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phone-frame {
+                width: 200px;
+                height: 400px;
+            }
+
+            .phone-mockup {
+                height: 450px;
+            }
+
+            .service-icon img {
+                width: 24px !important;
+                height: 24px !important;
+            }
+
+            .service-cards {
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .service-selection {
+                align-items: center;
+                justify-content: center;
+            }
+
+            .service-title {
+                font-size: 0.65rem;
+            }
+
+            .service-desc {
+                font-size: 0.6rem;
+            }
+
+            .service-price {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Statistics Section */
+        .statistics {
+            padding: 4rem 0;
+            background: rgba(210, 255, 141, 0.05);
+            border-top: 1px solid rgba(210, 255, 141, 0.1);
+            border-bottom: 1px solid rgba(210, 255, 141, 0.1);
+        }
+
+        .statistics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .statistics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(210, 255, 141, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stat-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stat-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .stat-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(210, 255, 141, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(210, 255, 141, 0.4);
+            box-shadow: 0 10px 30px rgba(210, 255, 141, 0.1);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #D2FF8D;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+        }
+
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #D2FF8D;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(210, 255, 141, 0.3);
+        }
+
+        .stat-number.completed {
+            animation: numberPulse 0.6s ease-out;
+        }
+
+        @keyframes numberPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #F4F1E9;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            padding: 4rem 0;
+            background: rgba(210, 255, 141, 0.05);
+            border-top: 1px solid rgba(210, 255, 141, 0.1);
+            border-bottom: 1px solid rgba(210, 255, 141, 0.1);
+        }
+
+        .statistics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .statistics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(210, 255, 141, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stat-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stat-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stat-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .stat-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .stat-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .stat-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(210, 255, 141, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(210, 255, 141, 0.4);
+            box-shadow: 0 10px 30px rgba(210, 255, 141, 0.1);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #D2FF8D;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+        }
+
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #D2FF8D;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(210, 255, 141, 0.3);
+        }
+
+        .stat-number.completed {
+            animation: numberPulse 0.6s ease-out;
+        }
+
+        @keyframes numberPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #F4F1E9;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        /* CountUp component styles */
+        .countup-container {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #D2FF8D;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(210, 255, 141, 0.3);
+        }
+
+        /* App Renovation Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-container {
+            background: #1a1a1a;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid #333;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            padding: 0;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .modal-header h2 {
+            color: #D2FF8D;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .renovation-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background-color: #D2FF8D;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+
+        .renovation-message {
+            color: #F4F1E9;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .notification-form h3 {
+            color: #D2FF8D;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background: #2a2a2a;
+            color: #F4F1E9;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #D2FF8D;
+            box-shadow: 0 0 0 3px rgba(210, 255, 141, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #888;
+        }
+
+        .success-message {
+            background: rgba(210, 255, 141, 0.1);
+            border: 1px solid #D2FF8D;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .success-message p {
+            color: #D2FF8D;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .modal-container {
+                width: 95%;
+                margin: 1rem;
+                max-height: 85vh;
+            }
+
+            .modal-header,
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .renovation-icon {
+                font-size: 3rem;
+            }
+
+            .renovation-message {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .notification-form h3 {
+                font-size: 1.1rem;
+            }
+
+            .form-group input,
+            .form-group select {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .btn-primary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-container {
+                width: 98%;
+                margin: 0.5rem;
+                max-height: 90vh;
+            }
+
+            .modal-header,
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .modal-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .renovation-icon {
+                font-size: 2.5rem;
+            }
+
+            .renovation-message {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .notification-form h3 {
+                font-size: 1rem;
+            }
+
+            .form-group input,
+            .form-group select {
+                padding: 0.7rem;
+                font-size: 0.85rem;
+            }
+
+            .btn-primary {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Animation base code */
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .animated.infinite {
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+        }
+
+        .animated.hinge {
+            -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+        }
+
+        /* Swing-in-top-fwd animation definition */
+        @-webkit-keyframes swing-in-top-fwd {
+            0% {
+                -webkit-transform: rotateX(-100deg);
+                transform: rotateX(-100deg);
+                -webkit-transform-origin: top;
+                transform-origin: top;
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+                -webkit-transform-origin: top;
+                transform-origin: top;
+                opacity: 1;
+            }
+        }
+
+        @keyframes swing-in-top-fwd {
+            0% {
+                -webkit-transform: rotateX(-100deg);
+                transform: rotateX(-100deg);
+                -webkit-transform-origin: top;
+                transform-origin: top;
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+                -webkit-transform-origin: top;
+                transform-origin: top;
+                opacity: 1;
+            }
+        }
+
+        .swing-in-top-fwd {
+            -webkit-animation: swing-in-top-fwd 1.2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+            animation: swing-in-top-fwd 1.2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+        }
+
+        /* Feature cards animation */
+        .feature-card {
+            opacity: 0;
+            transform: rotateX(-100deg);
+            transform-origin: top;
+            transition: all 0.6s ease;
+        }
+
+        .feature-card.animated {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
+
+        .feature-card:nth-child(1).swing-in-top-fwd {
+            animation-delay: 0.3s;
+        }
+
+        .feature-card:nth-child(2).swing-in-top-fwd {
+            animation-delay: 0.3s;
+        }
+
+        .feature-card:nth-child(3).swing-in-top-fwd {
+            animation-delay: 0.3s;
+        }
+
+        .countup-container .countup-number {
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            text-shadow: inherit;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0 10rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            background-image: url('images/hero/hero-background-1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 16px;
+            border: 1px solid #444;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            border-color: #D2FF8D;
+        }
+
+        .feature-card-icon {
+            width: 80px;
+            height: 80px;
+            background: #D2FF8D;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #F4F1E9;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card-desc {
+            color: #999;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            overflow: hidden;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #F4F1E9;
+        }
+
+        .testimonials-subtitle {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 3rem;
+        }
+
+        .infinite-moving-cards {
+            height: 20rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(210, 255, 141, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
+
+        .infinite-moving-cards-inner {
+            display: flex;
+            gap: 1rem;
+            width: fit-content;
+            animation: scroll 30s linear infinite;
+        }
+
+        .infinite-moving-cards-inner:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .testimonial-card {
+            flex: 0 0 auto;
+            width: 350px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #444;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(210, 255, 141, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .testimonial-card:hover::before {
+            left: 100%;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: #D2FF8D;
+            box-shadow: 0 12px 35px rgba(210, 255, 141, 0.1);
+        }
+
+        .testimonial-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .testimonial-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #D2FF8D;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-quote {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #F4F1E9;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: #D2FF8D;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-title {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 4rem 0;
+            background: #D2FF8D;
+            color: #000;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-dark {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .btn-dark:hover {
+            background-color: #333;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #000;
+            border: 2px solid #000;
+        }
+
+        .btn-outline:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            color: #D2FF8D;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #999;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: #666;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #D2FF8D;
+        }
+
+        .footer-section h4 {
+            color: #F4F1E9;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #D2FF8D;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .trust-notice {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .features {
+                background-attachment: scroll;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-buttons {
+                flex-direction: row;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .nav-buttons .btn-secondary {
+                display: none;
+            }
+
+            .language-toggle {
+                order: 1;
+                margin-right: 0.5rem;
+            }
+
+            .language-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .btn-primary {
+                order: 2;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .phone-frame {
+                width: 240px;
+                height: 480px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .statistics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.6rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                background-size: cover;
+                background-position: center center;
+            }
+
+            .features {
+                background-size: cover;
+                background-position: center center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .phone-frame {
+                width: 200px;
+                height: 400px;
+            }
+
+            .statistics-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-icon {
+                font-size: 2rem;
+                width: 60px;
+                height: 60px;
+            }
+
+            .nav-buttons {
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+
+            .language-toggle {
+                order: 1;
+                margin-right: 0.5rem;
+            }
+
+            .btn-primary {
+                order: 2;
+            }
+        }
+
+        /* Vertical Cut Reveal Animation */
+        .vertical-cut-reveal {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vertical-cut-reveal .reveal-text {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: verticalCutReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .vertical-cut-reveal .reveal-text:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .vertical-cut-reveal .reveal-text:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .vertical-cut-reveal .reveal-text:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .vertical-cut-reveal .reveal-text:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .vertical-cut-reveal .reveal-text:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes verticalCutReveal {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Staggered animation for different elements */
+        .hero-title {
+            animation: verticalCutReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation-delay: 0s;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            animation: verticalCutReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation-delay: 0.5s;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .hero-features {
+            animation: verticalCutReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation-delay: 1s;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            animation: verticalCutReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation-delay: 1.5s;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles - Remove default outline */
+        *:focus {
+            outline: none !important;
+        }
+
+        .btn:focus,
+        .footer-links a:focus,
+        .social-link:focus {
+            outline: none !important;
+        }
+
+        /* Remove image borders and outlines */
+        img {
+            border: none;
+            outline: none;
+        }
+
+        .social-link img:focus,
+        .feature-card-icon img:focus {
+            outline: none;
+            border: none;
+        }
+
+        /* Remove all click outlines */
+        a,
+        button,
+        input,
+        textarea,
+        select {
+            outline: none !important;
+        }
+
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none !important;
+        }
+
+        /* Remove active state outlines */
+        a:active,
+        button:active {
+            outline: none !important;
+        }
+
+        /* Advertise Contact Modal Styles */
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #D2FF8D;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .email-section,
+        .business-hours,
+        .response-time {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .email-section strong,
+        .business-hours strong,
+        .response-time strong {
+            color: #F4F1E9;
+            font-size: 0.9rem;
+        }
+
+        .email-link {
+            color: #D2FF8D;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            background: rgba(210, 255, 141, 0.1);
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            background: rgba(210, 255, 141, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .business-hours span,
+        .response-time span {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">Dog Trip</a>
+            <nav class="nav-buttons">
+                <div class="language-toggle">
+                    <button class="language-btn active" data-lang="ko">한국어</button>
+                    <button class="language-btn" data-lang="en">English</button>
+                </div>
+                <a href="#advertise" class="btn btn-secondary" data-ko="광고 문의" data-en="Advertise with Us">Advertise
+                    with Us</a>
+                <a href="#get-app" class="btn btn-primary" data-ko="앱 다운로드" data-en="Get the App">Get the App</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="vertical-cut-reveal hero-title">
+                        <span class="reveal-text" data-ko="여행 중에도," data-en="Travel with">여행 중에도,</span><br>
+                        <span class="reveal-text" data-ko="우리 강아지" data-en="Your Dog">우리 강아지</span><br>
+                        <span class="reveal-text highlight" data-ko="안심 돌봄" data-en="Safe Care">안심 돌봄</span>
+                    </h1>
+                    <p class="subtitle vertical-cut-reveal hero-subtitle">
+                        <span class="reveal-text" data-ko="식당/관람 동안 근처의 검증된 도우미를 10분 내 매칭."
+                            data-en="Find verified pet sitters nearby in 10 minutes during dining/activities.">식당/관람 동안
+                            근처의 검증된 도우미를 10분 내 매칭.</span>
+                    </p>
+
+                    <div class="features-list vertical-cut-reveal hero-features">
+                        <div class="feature-item">
+                            <span class="feature-emoji" role="img" aria-label="믿을 수 있는 연결">
+                                <img src="images/features/feature-trusted-connection.png" alt="믿을 수 있는 연결"
+                                    style="width: 32px; height: 32px; object-fit: contain;">
+                            </span>
+                            <div class="feature-text">
+                                <div class="feature-title" data-ko="믿을 수 있는 연결" data-en="Trusted Connection">믿을 수 있는 연결
+                                </div>
+                                <div class="feature-desc" data-ko="신분·후기 기반 매칭"
+                                    data-en="Identity & review-based matching">신분·후기 기반 매칭</div>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <span class="feature-emoji" role="img" aria-label="순간 필요에 즉시">
+                                <img src="images/features/feature-instant-matching.png" alt="순간 필요에 즉시"
+                                    style="width: 32px; height: 32px; object-fit: contain;">
+                            </span>
+                            <div class="feature-text">
+                                <div class="feature-title" data-ko="순간 필요에 즉시" data-en="Instant When Needed">순간 필요에 즉시
+                                </div>
+                                <div class="feature-desc" data-ko="지금 위치에서 바로 호출" data-en="Call from current location">
+                                    지금 위치에서 바로 호출</div>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <span class="feature-emoji" role="img" aria-label="현실적인 안전">
+                                <img src="images/features/feature-realistic-safety.png" alt="현실적인 안전"
+                                    style="width: 32px; height: 32px; object-fit: contain;">
+                            </span>
+                            <div class="feature-text">
+                                <div class="feature-title" data-ko="현실적인 안전" data-en="Realistic Safety">현실적인 안전</div>
+                                <div class="feature-desc" data-ko="산책/대기 옵션 선택" data-en="Walking/waiting options">산책/대기
+                                    옵션 선택</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons vertical-cut-reveal hero-buttons">
+                        <a href="#get-app" class="btn btn-primary" data-ko="앱 다운로드" data-en="Get the App">Get the
+                            App</a>
+                        <a href="#how-it-works" class="btn btn-secondary" data-ko="사용법" data-en="How it Works">How it
+                            Works</a>
+                    </div>
+                </div>
+
+                <div class="phone-mockup">
+                    <div class="carousel-container">
+                        <!-- Screen 0: Splash Screen -->
+                        <div class="phone-frame active" data-screen="0">
+                            <div class="phone-screen">
+                                <div class="splash-container">
+                                    <div class="splash-logo">
+                                        <img src="images/dog-trip-logo.png" alt="Dog Trip" class="logo-image">
+                                    </div>
+                                    <div class="splash-title">Dog Trip</div>
+                                    <div class="splash-subtitle" data-ko="여행 중에도, 우리 강아지 안심 돌봄"
+                                        data-en="Safe care for your dog while traveling">여행 중에도, 우리 강아지 안심 돌봄</div>
+                                    <div class="splash-loading">
+                                        <div class="loading-dots">
+                                            <div class="dot"></div>
+                                            <div class="dot"></div>
+                                            <div class="dot"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Screen 1: Service Selection & Matching -->
+                        <div class="phone-frame next" data-screen="1">
+                            <div class="phone-screen">
+                                <div class="app-header">
+                                    <div>
+                                        <div class="app-icon">
+                                            <img src="images/dog-trip-logo.png" alt="Dog Trip"
+                                                style="width: 32px; height: 32px; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="app-title">Dog Trip</div>
+                                        <div class="app-subtitle" data-ko="서비스 선택" data-en="Service Selection">서비스 선택
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Service Type Selection -->
+                                <div class="service-selection">
+                                    <div class="section-title small-title" data-ko="서비스 유형 선택"
+                                        data-en="Select Service Type">서비스 유형
+                                        선택</div>
+                                    <div class="service-cards">
+                                        <div class="service-card active">
+                                            <div class="service-icon">
+                                                <img src="images/services/service-walking.png" alt="산책 서비스"
+                                                    style="width: 48px; height: 48px; filter: brightness(0) invert(1);">
+                                            </div>
+                                            <div class="service-title" data-ko="산책 서비스" data-en="Walking Service">산책 서비스
+                                            </div>
+                                            <div class="service-desc" data-ko="30분 산책" data-en="30 min walk">30분 산책
+                                            </div>
+                                            <div class="service-price" data-ko="15,000원" data-en="$15">$15</div>
+                                        </div>
+                                        <div class="service-card">
+                                            <div class="service-icon">
+                                                <img src="images/services/service-care.png" alt="돌봄 서비스"
+                                                    style="width: 48px; height: 48px; filter: brightness(0) invert(1);">
+                                            </div>
+                                            <div class="service-title" data-ko="돌봄 서비스" data-en="Care Service">돌봄 서비스
+                                            </div>
+                                            <div class="service-desc" data-ko="2시간 돌봄" data-en="2 hour care">2시간 돌봄
+                                            </div>
+                                            <div class="service-price" data-ko="25,000원" data-en="$25">$25</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Duration Selection -->
+                                <div class="duration-selection">
+                                    <div class="section-title small-title" data-ko="서비스 시간" data-en="Service Duration">
+                                        서비스 시간</div>
+                                    <div class="duration-options">
+                                        <button class="duration-btn active" data-ko="30분" data-en="30 min">30
+                                            min</button>
+                                        <button class="duration-btn" data-ko="1시간" data-en="1 hour">1 hour</button>
+                                        <button class="duration-btn" data-ko="2시간" data-en="2 hours">2 hours</button>
+                                    </div>
+                                </div>
+
+                                <!-- Location & Time -->
+                                <div class="location-time-section">
+                                    <div class="location-card">
+                                        <div class="location-icon">L</div>
+                                        <div class="location-info">
+                                            <div class="location-title" data-ko="현재 위치" data-en="Current Location">
+                                                Current Location
+                                            </div>
+                                            <div class="location-address" data-ko="강남구 테헤란로 123"
+                                                data-en="123 Teheran-ro, Gangnam-gu">123 Teheran-ro, Gangnam-gu</div>
+                                        </div>
+                                        <button class="location-btn" data-ko="변경" data-en="Change">Change</button>
+                                    </div>
+                                    <div class="time-card">
+                                        <div class="time-icon">T</div>
+                                        <div class="time-info">
+                                            <div class="time-title" data-ko="서비스 시간" data-en="Service Time">Service Time
+                                            </div>
+                                            <div class="time-datetime" data-ko="오늘 14:00 - 14:30"
+                                                data-en="Today 14:00 - 14:30">Today 14:00 - 14:30</div>
+                                        </div>
+                                        <button class="time-btn" data-ko="변경" data-en="Change">Change</button>
+                                    </div>
+                                </div>
+
+                                <!-- Matching Progress -->
+                                <div class="matching-progress">
+                                    <div class="progress-header">
+                                        <div class="progress-title" data-ko="도우미 검색 중" data-en="Searching for Helpers">
+                                            도우미 검색 중</div>
+                                        <div class="progress-percentage">75%</div>
+                                    </div>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar-fill" style="width: 75%"></div>
+                                    </div>
+                                    <div class="progress-status" data-ko="근처 3명의 도우미 발견"
+                                        data-en="Found 3 helpers nearby">근처 3명의 도우미 발견</div>
+                                </div>
+
+                                <!-- Quick Actions -->
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn emergency">
+                                        <div class="action-icon">E</div>
+                                        <div class="action-text" data-ko="긴급 호출" data-en="Emergency">긴급 호출</div>
+                                    </button>
+                                    <button class="quick-action-btn">
+                                        <div class="action-icon">F</div>
+                                        <div class="action-text" data-ko="즐겨찾기" data-en="Favorites">즐겨찾기</div>
+                                    </button>
+                                    <button class="quick-action-btn">
+                                        <div class="action-icon">S</div>
+                                        <div class="action-text" data-ko="고객센터" data-en="Support">고객센터</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Screen 2: Booking Management with Calendar -->
+                        <div class="phone-frame hidden" data-screen="2">
+                            <div class="phone-screen">
+                                <div class="app-header">
+                                    <div>
+                                        <div class="app-icon">
+                                            <img src="images/dog-trip-logo.png" alt="Dog Trip"
+                                                style="width: 32px; height: 32px; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="app-title">Dog Trip</div>
+                                        <div class="app-subtitle" data-ko="예약 관리" data-en="Booking Management">예약 관리
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Calendar Section -->
+                                <div class="calendar-container">
+                                    <div class="calendar-header">
+                                        <div class="calendar-title" data-ko="예약 일정" data-en="Schedule">Schedule
+                                        </div>
+                                        <div class="calendar-nav">
+                                            <button class="calendar-btn">‹</button>
+                                            <span class="calendar-month" data-ko="2024년 1월"
+                                                data-en="January 2024">January 2024</span>
+                                            <button class="calendar-btn">›</button>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-grid">
+                                        <div class="calendar-weekdays">
+                                            <div class="weekday">일</div>
+                                            <div class="weekday">월</div>
+                                            <div class="weekday">화</div>
+                                            <div class="weekday">수</div>
+                                            <div class="weekday">목</div>
+                                            <div class="weekday">금</div>
+                                            <div class="weekday">토</div>
+                                        </div>
+                                        <div class="calendar-days">
+                                            <div class="day other-month">31</div>
+                                            <div class="day">1</div>
+                                            <div class="day">2</div>
+                                            <div class="day">3</div>
+                                            <div class="day">4</div>
+                                            <div class="day">5</div>
+                                            <div class="day">6</div>
+                                            <div class="day">7</div>
+                                            <div class="day">8</div>
+                                            <div class="day">9</div>
+                                            <div class="day">10</div>
+                                            <div class="day">11</div>
+                                            <div class="day">12</div>
+                                            <div class="day">13</div>
+                                            <div class="day">14</div>
+                                            <div class="day">15</div>
+                                            <div class="day">16</div>
+                                            <div class="day">17</div>
+                                            <div class="day">18</div>
+                                            <div class="day">19</div>
+                                            <div class="day">20</div>
+                                            <div class="day">21</div>
+                                            <div class="day">22</div>
+                                            <div class="day">23</div>
+                                            <div class="day">24</div>
+                                            <div class="day">25</div>
+                                            <div class="day">26</div>
+                                            <div class="day">27</div>
+                                            <div class="day">28</div>
+                                            <div class="day">29</div>
+                                            <div class="day">30</div>
+                                            <div class="day">31</div>
+                                            <div class="day other-month">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Upcoming Bookings -->
+                                <div class="bookings-section">
+                                    <div class="section-title small-title" data-ko="다가오는 예약"
+                                        data-en="Upcoming Bookings">다가오는 예약
+                                    </div>
+                                    <div class="booking-card">
+                                        <div class="booking-header">
+                                            <div class="booking-time" data-ko="오늘 14:00" data-en="Today 14:00">Today
+                                                14:00</div>
+                                            <div class="booking-status confirmed" data-ko="확정" data-en="Confirmed">
+                                                Confirmed</div>
+                                        </div>
+                                        <div class="booking-details">
+                                            <div class="booking-helper" data-ko="김도우미" data-en="Kim Helper">Kim Helper
+                                            </div>
+                                            <div class="booking-service" data-ko="산책 서비스" data-en="Walking Service">
+                                                Walking Service</div>
+                                            <div class="booking-duration" data-ko="2시간" data-en="2 hours">2 hours</div>
+                                        </div>
+                                        <div class="booking-actions">
+                                            <button class="action-btn secondary">취소</button>
+                                            <button class="action-btn primary">연락하기</button>
+                                        </div>
+                                    </div>
+                                    <div class="booking-card">
+                                        <div class="booking-header">
+                                            <div class="booking-time">내일 10:00</div>
+                                            <div class="booking-status pending">대기중</div>
+                                        </div>
+                                        <div class="booking-details">
+                                            <div class="booking-helper">박펫시터</div>
+                                            <div class="booking-service">돌봄 서비스</div>
+                                            <div class="booking-duration">4시간</div>
+                                        </div>
+                                        <div class="booking-actions">
+                                            <button class="action-btn secondary">취소</button>
+                                            <button class="action-btn primary">상세보기</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Actions -->
+                                <div class="quick-actions">
+                                    <button class="quick-action-btn">
+                                        <div class="action-icon">+</div>
+                                        <div class="action-text" data-ko="새 예약" data-en="New Booking">새 예약</div>
+                                    </button>
+                                    <button class="quick-action-btn">
+                                        <div class="action-icon">C</div>
+                                        <div class="action-text" data-ko="일정 보기" data-en="View Schedule">일정 보기</div>
+                                    </button>
+                                    <button class="quick-action-btn">
+                                        <div class="action-icon">S</div>
+                                        <div class="action-text" data-ko="설정" data-en="Settings">설정</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Navigation Arrows -->
+                        <button class="carousel-arrow left" onclick="previousScreen()" aria-label="Previous">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m15 18-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <button class="carousel-arrow right" onclick="nextScreen()" aria-label="Next">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </button>
+
+                        <!-- Navigation Dots -->
+                        <div class="carousel-nav">
+                            <div class="nav-dot active" onclick="goToScreen(0)" data-screen="0"></div>
+                            <div class="nav-dot" onclick="goToScreen(1)" data-screen="1"></div>
+                            <div class="nav-dot" onclick="goToScreen(2)" data-screen="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="statistics">
+            <div class="statistics-container">
+                <h2 class="section-title" data-ko="믿을 수 있는 서비스" data-en="Trusted Service">믿을 수 있는 서비스</h2>
+                <p class="section-subtitle" data-ko="검증된 데이터로 확인하는 Dog Trip의 성과"
+                    data-en="Dog Trip's achievements verified by data">검증된 데이터로 확인하는 Dog Trip의 성과</p>
+
+                <div class="statistics-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="images/stats/stats-service-area.png" alt="서비스 지역"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="stat-number" id="location-count">0</div>
+                        <div class="stat-label" data-ko="서비스 지역" data-en="Service Areas">서비스 지역</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="images/stats/stats-verified-helpers.png" alt="검증된 도우미"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="stat-number" id="helper-count">0</div>
+                        <div class="stat-label" data-ko="검증된 도우미" data-en="Verified Sitters">검증된 도우미</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="images/stats/stats-satisfaction.png" alt="평균 만족도"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="stat-number" id="rating-count">0</div>
+                        <div class="stat-label" data-ko="평균 만족도" data-en="Average Rating">평균 만족도</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="images/stats/stats-matching-time.png" alt="평균 매칭 시간"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="stat-number" id="time-count">0</div>
+                        <div class="stat-label" data-ko="평균 매칭 시간" data-en="Avg. Match Time">평균 매칭 시간</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="images/dog-trip-logo.png" alt="돌본 반려견"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="stat-number" id="pet-count">0</div>
+                        <div class="stat-label" data-ko="돌본 반려견" data-en="Pets Cared For">돌본 반려견</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="images/stats/stats-success-rate.png" alt="매칭 성공률"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <div class="stat-number" id="success-count">0</div>
+                        <div class="stat-label" data-ko="매칭 성공률" data-en="Success Rate">매칭 성공률</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="testimonials-container">
+                <h2 class="testimonials-title" data-ko="사용자 후기" data-en="User Testimonials">사용자 후기</h2>
+                <p class="testimonials-subtitle" data-ko="실제 사용자들이 경험한 Dog Trip의 이야기"
+                    data-en="Real stories from Dog Trip users">실제 사용자들이 경험한 Dog Trip의 이야기</p>
+
+                <div class="infinite-moving-cards">
+                    <div class="infinite-moving-cards-inner">
+                        <!-- First set of cards -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-1.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="여행 중에 강아지를 맡길 곳이 없어 고민이었는데, Dog Trip 덕분에 안심하고 식당에 들어갈 수 있었어요. 도우미분이 정말 친절하셨고, 실시간으로 강아지 상태를 알려주셔서 너무 감사했습니다!"
+                                    data-en="I was worried about where to leave my dog during travel, but thanks to Dog Trip, I could enter restaurants with peace of mind. The helper was very kind and kept me updated in real-time.">
+                                    여행 중에 강아지를 맡길 곳이 없어 고민이었는데, Dog Trip 덕분에 안심하고 식당에 들어갈 수 있었어요. 도우미분이 정말 친절하셨고, 실시간으로
+                                    강아지 상태를 알려주셔서 너무 감사했습니다!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="김여행" data-en="Kim Yeohaeng">김여행</div>
+                                    <div class="testimonial-title" data-ko="부산 여행자" data-en="Busan Traveler">부산 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-2.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="10분 내에 매칭된다고 해서 반신반의했는데, 정말로 8분 만에 도우미분이 오셨어요! 강아지도 도우미분을 좋아하는지 꼬리를 살랑살랑 흔들었고, 저희는 마음 편히 관광을 즐길 수 있었습니다."
+                                    data-en="I was skeptical about the 10-minute matching promise, but a helper actually arrived in just 8 minutes! My dog seemed to like the helper as it wagged its tail.">
+                                    10분 내에 매칭된다고 해서 반신반의했는데, 정말로 8분 만에 도우미분이 오셨어요! 강아지도 도우미분을 좋아하는지 꼬리를 살랑살랑 흔들었고, 저희는
+                                    마음 편히 관광을 즐길 수 있었습니다.</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="박산책" data-en="Park Sanchaek">박산책</div>
+                                    <div class="testimonial-title" data-ko="서울 관광객" data-en="Seoul Tourist">서울 관광객</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-3.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="검증된 도우미만 매칭된다고 해서 신뢰가 갔어요. 실제로 신분 확인도 완료된 분들이고, 강아지 돌봄 경험도 풍부하셔서 정말 안심이었습니다. 다음 여행에도 꼭 이용할 예정이에요!"
+                                    data-en="I trusted the service because only verified helpers are matched. The helpers had completed identity verification and had rich experience in dog care.">
+                                    검증된 도우미만 매칭된다고 해서 신뢰가 갔어요. 실제로 신분 확인도 완료된 분들이고, 강아지 돌봄 경험도 풍부하셔서 정말 안심이었습니다. 다음 여행에도
+                                    꼭 이용할 예정이에요!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="이안심" data-en="Lee Ansim">이안심</div>
+                                    <div class="testimonial-title" data-ko="대구 여행자" data-en="Daegu Traveler">대구 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-4.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="강아지와 함께하는 여행이 이렇게 편할 줄 몰랐어요. 도우미분이 산책도 시켜주시고, 사진도 보내주셔서 강아지가 잘 지내고 있는지 실시간으로 확인할 수 있었습니다. 정말 감사해요!"
+                                    data-en="I didn't know traveling with a dog could be this convenient. The helper took my dog for walks and sent photos, so I could check in real-time that my dog was doing well. I'm really grateful!">
+                                    강아지와 함께하는 여행이 이렇게 편할 줄 몰랐어요. 도우미분이 산책도 시켜주시고, 사진도 보내주셔서 강아지가 잘 지내고 있는지 실시간으로 확인할 수
+                                    있었습니다. 정말 감사해요!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="최행복" data-en="Choi Haengbok">최행복</div>
+                                    <div class="testimonial-title" data-ko="제주도 여행자" data-en="Jeju Traveler">제주도 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-5.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="비용도 생각보다 저렴했고, 강아지 안전도 확실히 보장되어서 만족스러웠습니다. 특히 앱에서 실시간 위치 공유와 돌봄 상황을 확인할 수 있어서 정말 편리했어요. 강력 추천합니다!"
+                                    data-en="Affordable price and guaranteed safety. Real-time location sharing was really convenient.">
+                                    비용도 생각보다 저렴했고, 강아지 안전도 확실히 보장되어서 만족스러웠습니다. 특히 앱에서 실시간 위치 공유와 돌봄 상황을 확인할 수 있어서 정말
+                                    편리했어요. 강력 추천합니다!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="정만족" data-en="Jung Manjok">정만족</div>
+                                    <div class="testimonial-title" data-ko="경주 여행자" data-en="Gyeongju Traveler">경주 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-6.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="처음에는 걱정이 많았는데, 도우미분이 강아지 돌봄 전문가라서 금세 마음이 놓였어요. 강아지도 도우미분을 좋아하는지 계속 따라다녔고, 저희는 여행을 마음껏 즐길 수 있었습니다. 정말 감사합니다!"
+                                    data-en="I was worried at first, but the helper was a dog care expert, so I quickly felt at ease. My dog seemed to like the helper as it kept following them around.">
+                                    처음에는 걱정이 많았는데, 도우미분이 강아지 돌봄 전문가라서 금세 마음이 놓였어요. 강아지도 도우미분을 좋아하는지 계속 따라다녔고, 저희는 여행을
+                                    마음껏 즐길 수 있었습니다. 정말 감사합니다!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="한감사" data-en="Han Gamsa">한감사</div>
+                                    <div class="testimonial-title" data-ko="강릉 여행자" data-en="Gangneung Traveler">강릉 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-1.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="여행 중에 강아지를 맡길 곳이 없어 고민이었는데, Dog Trip 덕분에 안심하고 식당에 들어갈 수 있었어요. 도우미분이 정말 친절하셨고, 실시간으로 강아지 상태를 알려주셔서 너무 감사했습니다!"
+                                    data-en="I was worried about where to leave my dog during travel, but thanks to Dog Trip, I could enter restaurants with peace of mind. The helper was very kind and kept me updated in real-time.">
+                                    여행 중에 강아지를 맡길 곳이 없어 고민이었는데, Dog Trip 덕분에 안심하고 식당에 들어갈 수 있었어요. 도우미분이 정말 친절하셨고, 실시간으로
+                                    강아지 상태를 알려주셔서 너무 감사했습니다!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="김여행" data-en="Kim Yeohaeng">김여행</div>
+                                    <div class="testimonial-title" data-ko="부산 여행자" data-en="Busan Traveler">부산 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-2.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="10분 내에 매칭된다고 해서 반신반의했는데, 정말로 8분 만에 도우미분이 오셨어요! 강아지도 도우미분을 좋아하는지 꼬리를 살랑살랑 흔들었고, 저희는 마음 편히 관광을 즐길 수 있었습니다."
+                                    data-en="I was skeptical about the 10-minute matching promise, but a helper actually arrived in just 8 minutes! My dog seemed to like the helper as it wagged its tail.">
+                                    10분 내에 매칭된다고 해서 반신반의했는데, 정말로 8분 만에 도우미분이 오셨어요! 강아지도 도우미분을 좋아하는지 꼬리를 살랑살랑 흔들었고, 저희는
+                                    마음 편히 관광을 즐길 수 있었습니다.</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="박산책" data-en="Park Sanchaek">박산책</div>
+                                    <div class="testimonial-title" data-ko="서울 관광객" data-en="Seoul Tourist">서울 관광객</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-3.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="검증된 도우미만 매칭된다고 해서 신뢰가 갔어요. 실제로 신분 확인도 완료된 분들이고, 강아지 돌봄 경험도 풍부하셔서 정말 안심이었습니다. 다음 여행에도 꼭 이용할 예정이에요!"
+                                    data-en="I trusted the service because only verified helpers are matched. The helpers had completed identity verification and had rich experience in dog care.">
+                                    검증된 도우미만 매칭된다고 해서 신뢰가 갔어요. 실제로 신분 확인도 완료된 분들이고, 강아지 돌봄 경험도 풍부하셔서 정말 안심이었습니다. 다음 여행에도
+                                    꼭 이용할 예정이에요!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="이안심" data-en="Lee Ansim">이안심</div>
+                                    <div class="testimonial-title" data-ko="대구 여행자" data-en="Daegu Traveler">대구 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-4.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="강아지와 함께하는 여행이 이렇게 편할 줄 몰랐어요. 도우미분이 산책도 시켜주시고, 사진도 보내주셔서 강아지가 잘 지내고 있는지 실시간으로 확인할 수 있었습니다. 정말 감사해요!"
+                                    data-en="I didn't know traveling with a dog could be this convenient. The helper took my dog for walks and sent photos, so I could check in real-time that my dog was doing well. I'm really grateful!">
+                                    강아지와 함께하는 여행이 이렇게 편할 줄 몰랐어요. 도우미분이 산책도 시켜주시고, 사진도 보내주셔서 강아지가 잘 지내고 있는지 실시간으로 확인할 수
+                                    있었습니다. 정말 감사해요!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="최행복" data-en="Choi Haengbok">최행복</div>
+                                    <div class="testimonial-title" data-ko="제주도 여행자" data-en="Jeju Traveler">제주도 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-5.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="비용도 생각보다 저렴했고, 강아지 안전도 확실히 보장되어서 만족스러웠습니다. 특히 앱에서 실시간 위치 공유와 돌봄 상황을 확인할 수 있어서 정말 편리했어요. 강력 추천합니다!"
+                                    data-en="Affordable price and guaranteed safety. Real-time location sharing was really convenient.">
+                                    비용도 생각보다 저렴했고, 강아지 안전도 확실히 보장되어서 만족스러웠습니다. 특히 앱에서 실시간 위치 공유와 돌봄 상황을 확인할 수 있어서 정말
+                                    편리했어요. 강력 추천합니다!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="정만족" data-en="Jung Manjok">정만족</div>
+                                    <div class="testimonial-title" data-ko="경주 여행자" data-en="Gyeongju Traveler">경주 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <img src="images/testimonials/testimonial-user-6.png" alt="사용자 프로필"
+                                    class="testimonial-image">
+                                <p class="testimonial-quote"
+                                    data-ko="처음에는 걱정이 많았는데, 도우미분이 강아지 돌봄 전문가라서 금세 마음이 놓였어요. 강아지도 도우미분을 좋아하는지 계속 따라다녔고, 저희는 여행을 마음껏 즐길 수 있었습니다. 정말 감사합니다!"
+                                    data-en="I was worried at first, but the helper was a dog care expert, so I quickly felt at ease. My dog seemed to like the helper as it kept following them around.">
+                                    처음에는 걱정이 많았는데, 도우미분이 강아지 돌봄 전문가라서 금세 마음이 놓였어요. 강아지도 도우미분을 좋아하는지 계속 따라다녔고, 저희는 여행을
+                                    마음껏 즐길 수 있었습니다. 정말 감사합니다!</p>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-name" data-ko="한감사" data-en="Han Gamsa">한감사</div>
+                                    <div class="testimonial-title" data-ko="강릉 여행자" data-en="Gangneung Traveler">강릉 여행자
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="how-it-works" class="features">
+            <div class="features-container">
+                <h2 class="section-title">How it Works</h2>
+                <p class="section-subtitle" data-ko="간단한 3단계로 안전한 강아지 돌봄" data-en="Simple 3-step safe dog care">간단한 3단계로
+                    안전한 강아지 돌봄</p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <img src="images/process/process-location.png" alt="위치 아이콘"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <h3 class="feature-card-title" data-ko="위치 허용" data-en="Location Permission">위치 허용</h3>
+                        <p class="feature-card-desc" data-ko="현재 위치를 확인하여 근처 도우미를 찾습니다"
+                            data-en="Find nearby helpers by checking your current location">현재 위치를 확인하여 근처 도우미를 찾습니다</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <img src="images/process/process-helper-call.png" alt="도우미 호출"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <h3 class="feature-card-title" data-ko="도우미 호출" data-en="Call Helper">도우미 호출</h3>
+                        <p class="feature-card-desc" data-ko="검증된 도우미에게 즉시 매칭 요청을 보냅니다"
+                            data-en="Send immediate matching request to verified helpers">검증된 도우미에게 즉시 매칭 요청을 보냅니다</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-card-icon">
+                            <img src="images/process/process-system-work.png" alt="시스템 작업 아이콘"
+                                style="width: 50px; height: 50px; object-fit: contain;">
+                        </div>
+                        <h3 class="feature-card-title" data-ko="현장 인계 & 실시간 확인" data-en="Handover & Real-time Check">현장
+                            인계 & 실시간 확인</h3>
+                        <p class="feature-card-desc" data-ko="안전한 인계와 실시간 돌봄 상황을 확인합니다"
+                            data-en="Ensure safe handover and real-time care monitoring">안전한 인계와 실시간 돌봄 상황을 확인합니다</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CTA Section -->
+        <section id="get-app" class="cta">
+            <div class="cta-container">
+                <h2 data-ko="지금 시작하세요" data-en="Get Started Now">지금 시작하세요</h2>
+                <p data-ko="강아지와 함께하는 여행을 더욱 편안하게 만들어보세요" data-en="Make your travels with your dog more comfortable">
+                    강아지와 함께하는 여행을 더욱 편안하게 만들어보세요</p>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-dark" data-ko="앱 다운로드" data-en="Download App">앱 다운로드</a>
+                    <a href="#advertise" class="btn btn-outline" data-ko="도우미 신청" data-en="Apply as Helper">도우미 신청</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Dog Trip</h3>
+                    <p data-ko="여행 중에도 우리 강아지를 안심하고 맡길 수 있는 검증된 도우미 매칭 서비스"
+                        data-en="Trusted helper matching service for safe dog care during travel">여행 중에도 우리 강아지를 안심하고 맡길
+                        수 있는 검증된 도우미 매칭 서비스</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <img src="images/social/social-instagram.png" alt="Instagram"
+                                style="width: 32px; height: 32px; object-fit: contain;">
+                        </a>
+                        <a href="#" class="social-link" aria-label="TikTok">
+                            <img src="images/social/social-tiktok.png" alt="TikTok"
+                                style="width: 32px; height: 32px; object-fit: contain;">
+                        </a>
+                        <a href="#" class="social-link" aria-label="Threads">
+                            <img src="images/social/social-threads.png" alt="Threads"
+                                style="width: 32px; height: 32px; object-fit: contain;">
+                        </a>
+                        <a href="#" class="social-link" aria-label="X">
+                            <img src="images/social/social-x.png" alt="X"
+                                style="width: 32px; height: 32px; object-fit: contain;">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-ko="서비스" data-en="Service">서비스</h4>
+                    <ul class="footer-links">
+                        <li><a href="#how-it-works" data-ko="사용법" data-en="How it Works">사용법</a></li>
+                        <li><a href="#advertise" data-ko="도우미 신청" data-en="Apply as Helper">도우미 신청</a></li>
+                        <li><a href="#get-app" data-ko="앱 다운로드" data-en="Download App">앱 다운로드</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 data-ko="정책" data-en="Policy">정책</h4>
+                    <ul class="footer-links">
+                        <li><a href="pages/terms.html" data-ko="이용약관" data-en="Terms of Service">이용약관</a></li>
+                        <li><a href="pages/privacy.html" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</a></li>
+                        <li><a href="pages/safety.html" data-ko="안전가이드" data-en="Safety Guide">안전가이드</a></li>
+                        <li><a href="pages/faq.html" data-ko="자주묻는질문" data-en="FAQ">자주묻는질문</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Dog Trip. All rights reserved.</p>
+                <p class="trust-notice">신원확인 완료 도우미만 매칭됩니다. 반려동물 보험 제휴 준비 중.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Renovation Modal -->
+    <div id="app-renovation-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 data-ko="앱 리뉴얼 중" data-en="App Under Renovation">앱 리뉴얼 중</h2>
+                    <button class="modal-close" onclick="closeAppModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="renovation-icon">🔧</div>
+                    <p class="renovation-message" data-ko="더 나은 서비스를 위해 앱을 리뉴얼하고 있습니다. 완료되면 알림을 받아보세요!"
+                        data-en="We're renovating the app for better service. Get notified when it's ready!">더 나은 서비스를
+                        위해 앱을 리뉴얼하고 있습니다. 완료되면 알림을 받아보세요!</p>
+
+                    <div class="notification-form">
+                        <h3 data-ko="알림받기" data-en="Get Notified">알림받기</h3>
+                        <form id="notification-form">
+                            <div class="form-group">
+                                <input type="email" id="notification-email" placeholder="이메일 주소를 입력하세요"
+                                    data-ko-placeholder="이메일 주소를 입력하세요" data-en-placeholder="Enter your email address"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="notification-type" value="서비스 오픈 알림" readonly data-ko="서비스 오픈 알림"
+                                    data-en="Service Launch Notification">
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-ko="알림 신청하기"
+                                data-en="Subscribe for Notifications">알림 신청하기</button>
+                        </form>
+                        <div id="notification-success" class="success-message" style="display: none;">
+                            <p data-ko="알림 신청이 완료되었습니다! 앱 출시 시 이메일로 알려드리겠습니다."
+                                data-en="Notification subscription completed! We'll notify you when the app is ready.">
+                                알림 신청이 완료되었습니다! 앱 출시 시 이메일로 알려드리겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Helper Application Modal -->
+    <div id="helper-application-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 data-ko="도우미 신청 리뉴얼 중" data-en="Helper Application Under Renovation">도우미 신청 리뉴얼 중</h2>
+                    <button class="modal-close" onclick="closeHelperModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="renovation-icon">
+                        <img src="images/dog-trip-logo.png" alt="Dog Trip"
+                            style="width: 60px; height: 60px; object-fit: contain;">
+                    </div>
+                    <p class="renovation-message" data-ko="더 나은 도우미 신청 시스템을 위해 리뉴얼하고 있습니다. 완료되면 알림을 받아보세요!"
+                        data-en="We are renovating the helper application system for better service. Get notified when it's ready!">
+                        더 나은 도우미 신청 시스템을 위해 리뉴얼하고 있습니다. 완료되면 알림을 받아보세요!</p>
+
+                    <div class="notification-form">
+                        <h3 data-ko="알림받기" data-en="Get Notified">알림받기</h3>
+                        <form id="helper-notification-form">
+                            <div class="form-group">
+                                <input type="email" id="helper-notification-email" placeholder="이메일 주소를 입력하세요"
+                                    data-ko-placeholder="이메일 주소를 입력하세요" data-en-placeholder="Enter your email address"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="helper-notification-type" value="서비스 오픈 알림" readonly
+                                    data-ko="서비스 오픈 알림" data-en="Service Launch Notification">
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-ko="알림 신청하기"
+                                data-en="Subscribe for Notifications">알림 신청하기</button>
+                        </form>
+                        <div id="helper-notification-success" class="success-message" style="display: none;">
+                            <p data-ko="알림 신청이 완료되었습니다! 도우미 신청 시스템 완료 시 이메일로 알려드리겠습니다."
+                                data-en="Notification subscription completed! We'll notify you when the helper application system is ready.">
+                                알림 신청이 완료되었습니다! 도우미 신청 시스템 완료 시 이메일로 알려드리겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertise Contact Modal -->
+    <div id="advertise-contact-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 data-ko="광고 문의" data-en="Advertise with Us">광고 문의</h2>
+                    <button class="modal-close" onclick="closeAdvertiseModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="renovation-icon">
+                        <img src="images/dog-trip-logo.png" alt="Dog Trip"
+                            style="width: 60px; height: 60px; object-fit: contain;">
+                    </div>
+                    <p class="renovation-message" data-ko="광고 및 제휴 문의는 아래 이메일로 연락해주세요. 빠른 시일 내에 답변드리겠습니다."
+                        data-en="For advertising and partnership inquiries, please contact us at the email below. We will respond promptly.">
+                        광고 및 제휴 문의는 아래 이메일로 연락해주세요. 빠른 시일 내에 답변드리겠습니다.</p>
+
+                    <div class="contact-info">
+                        <h3 data-ko="연락처 정보" data-en="Contact Information">연락처 정보</h3>
+                        <div class="email-section">
+                            <strong data-ko="이메일" data-en="Email">이메일:</strong>
+                            <a href="mailto:bibodid119@gmail.com" class="email-link">bibodid119@gmail.com</a>
+                        </div>
+                        <div class="business-hours">
+                            <strong data-ko="업무 시간" data-en="Business Hours">업무 시간:</strong>
+                            <span data-ko="평일 09:00 - 18:00 (주말, 공휴일 휴무)"
+                                data-en="Weekdays 09:00 - 18:00 (Closed on weekends and holidays)">평일 09:00 - 18:00 (주말,
+                                공휴일 휴무)</span>
+                        </div>
+                        <div class="response-time">
+                            <strong data-ko="답변 시간" data-en="Response Time">답변 시간:</strong>
+                            <span data-ko="영업일 기준 1-2일 이내" data-en="Within 1-2 business days">영업일 기준 1-2일 이내</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CountUp Component -->
+    <script src="components/countup.js"></script>
+
+    <!-- Main Script -->
+    <script>
+        // Simple page view tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Dogsit Trip Landing',
+                page_location: window.location.href
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation to phone mockup
+        window.addEventListener('load', function () {
+            const loadingProgress = document.querySelector('.loading-progress');
+            if (loadingProgress) {
+                setTimeout(() => {
+                    loadingProgress.style.width = '100%';
+                }, 2000);
+            }
+        });
+
+        // Initialize CountUp animations
+        function initializeCountUpAnimations() {
+            // Statistics data
+            const statistics = [
+                { id: 'location-count', value: 15, suffix: '개', suffixEn: 'cities' },
+                { id: 'helper-count', value: 1250, suffix: '명', suffixEn: 'helpers' },
+                { id: 'rating-count', value: 4.8, decimals: 1, suffix: '점', suffixEn: 'stars' },
+                { id: 'time-count', value: 8, suffix: '분', suffixEn: 'min' },
+                { id: 'pet-count', value: 3500, suffix: '마리', suffixEn: 'pets' },
+                { id: 'success-count', value: 95, suffix: '%', suffixEn: '%' }
+            ];
+
+            // Initialize each statistic
+            statistics.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                if (element) {
+                    // Clear the original content
+                    element.innerHTML = '';
+
+                    // Get current language and appropriate suffix
+                    const currentLang = localStorage.getItem('language') || 'ko';
+                    const suffix = currentLang === 'en' ? stat.suffixEn : stat.suffix;
+
+                    // Initialize CountUp directly in the element
+                    const countUp = new CountUp({
+                        value: stat.value,
+                        duration: 5000,
+                        decimals: stat.decimals || 0,
+                        suffix: suffix,
+                        easing: 'easeOutSlow',
+                        triggerOnView: true,
+                        animationStyle: 'gentle',
+                        colorScheme: 'custom',
+                        customColor: '#D2FF8D',
+                        onAnimationComplete: () => {
+                            // Add pulse animation to the number element
+                            const numberElement = element.querySelector('.countup-number');
+                            if (numberElement) {
+                                numberElement.classList.add('completed');
+                                setTimeout(() => {
+                                    numberElement.classList.remove('completed');
+                                }, 600);
+                            }
+                        }
+                    });
+
+                    countUp.init(element);
+                }
+            });
+        }
+
+        // Scroll to top on page load/refresh
+        window.addEventListener('load', function () {
+            window.scrollTo(0, 0);
+        });
+
+        // Scroll to top immediately when page loads
+        window.scrollTo(0, 0);
+
+        // Also scroll to top when page is refreshed
+        window.addEventListener('beforeunload', function () {
+            window.scrollTo(0, 0);
+        });
+
+        // Language switching functionality
+        function initializeLanguageToggle() {
+            const languageBtns = document.querySelectorAll('.language-btn');
+            const elements = document.querySelectorAll('[data-ko][data-en]');
+
+            // Load saved language preference
+            const savedLang = localStorage.getItem('language') || 'ko';
+            switchLanguage(savedLang);
+
+            languageBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const lang = this.getAttribute('data-lang');
+                    switchLanguage(lang);
+                    localStorage.setItem('language', lang);
+                });
+            });
+
+            function switchLanguage(lang) {
+                // Update button states
+                languageBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update HTML lang attribute
+                document.documentElement.setAttribute('lang', lang);
+
+                // Update all elements with language data
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        element.textContent = text;
+                    }
+                });
+
+                // Re-initialize CountUp animations with new language
+                initializeCountUpAnimations();
+
+                // Update placeholder texts
+                updatePlaceholders(lang);
+
+                // Update carousel text
+                updateCarouselText(lang);
+            }
+        }
+
+        // App Renovation Modal Functions
+        function openAppModal() {
+            const modal = document.getElementById('app-renovation-modal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAppModal() {
+            const modal = document.getElementById('app-renovation-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Helper Application Modal Functions
+        function openHelperModal() {
+            const modal = document.getElementById('helper-application-modal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeHelperModal() {
+            const modal = document.getElementById('helper-application-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Advertise Contact Modal Functions
+        function openAdvertiseModal() {
+            const modal = document.getElementById('advertise-contact-modal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdvertiseModal() {
+            const modal = document.getElementById('advertise-contact-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle notification form submission
+        function handleNotificationForm() {
+            const form = document.getElementById('notification-form');
+            const successMessage = document.getElementById('notification-success');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('notification-email').value;
+                const type = "서비스 오픈 알림";
+
+                // Simulate form submission
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+
+                    // Store notification data (in real app, send to server)
+                    const notificationData = {
+                        email: email,
+                        type: type,
+                        timestamp: new Date().toISOString()
+                    };
+                    localStorage.setItem('notification_subscription', JSON.stringify(notificationData));
+                }, 1000);
+            });
+
+            // Handle helper notification form submission
+            const helperForm = document.getElementById('helper-notification-form');
+            const helperSuccessMessage = document.getElementById('helper-notification-success');
+
+            if (helperForm) {
+                helperForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const email = document.getElementById('helper-notification-email').value;
+                    const type = "서비스 오픈 알림";
+
+                    // Simulate form submission
+                    setTimeout(() => {
+                        helperForm.style.display = 'none';
+                        helperSuccessMessage.style.display = 'block';
+
+                        // Store notification data (in real app, send to server)
+                        const helperNotificationData = {
+                            email: email,
+                            type: type,
+                            timestamp: new Date().toISOString()
+                        };
+                        localStorage.setItem('helper_notification_subscription', JSON.stringify(helperNotificationData));
+                    }, 1000);
+                });
+            }
+        }
+
+        // Update placeholder text based on language
+        function updatePlaceholders(lang) {
+            const emailInput = document.getElementById('notification-email');
+            const selectOptions = document.querySelectorAll('#notification-type option');
+
+            if (emailInput) {
+                const placeholder = emailInput.getAttribute(`data-${lang}-placeholder`);
+                if (placeholder) {
+                    emailInput.placeholder = placeholder;
+                }
+            }
+
+            selectOptions.forEach(option => {
+                const text = option.getAttribute(`data-${lang}`);
+                if (text) {
+                    option.textContent = text;
+                }
+            });
+        }
+
+        // Update carousel text based on language
+        function updateCarouselText(lang) {
+            const carouselElements = document.querySelectorAll('.phone-screen [data-ko][data-en]');
+            carouselElements.forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+        }
+
+        // 3D Carousel functionality
+        let currentScreen = 0;
+        const totalScreens = 3;
+        let autoRotateInterval;
+        let isHovering = false;
+
+        function initializeCarousel() {
+            updateCarousel();
+            startAutoRotate();
+
+            // Add hover events
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    stopAutoRotate();
+                });
+                carouselContainer.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    startAutoRotate();
+                });
+            }
+
+            // Add touch events for mobile
+            addTouchEvents();
+        }
+
+        function updateCarousel() {
+            const frames = document.querySelectorAll('.phone-frame');
+            const dots = document.querySelectorAll('.nav-dot');
+
+            frames.forEach((frame, index) => {
+                frame.classList.remove('active', 'next', 'prev', 'hidden');
+
+                if (index === currentScreen) {
+                    frame.classList.add('active');
+                } else if (index === (currentScreen + 1) % totalScreens) {
+                    frame.classList.add('next');
+                } else if (index === (currentScreen - 1 + totalScreens) % totalScreens) {
+                    frame.classList.add('prev');
+                } else {
+                    frame.classList.add('hidden');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentScreen);
+            });
+        }
+
+        function nextScreen() {
+            currentScreen = (currentScreen + 1) % totalScreens;
+            updateCarousel();
+        }
+
+        function previousScreen() {
+            currentScreen = (currentScreen - 1 + totalScreens) % totalScreens;
+            updateCarousel();
+        }
+
+        function goToScreen(screenIndex) {
+            currentScreen = screenIndex;
+            updateCarousel();
+        }
+
+        function startAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+            }
+            autoRotateInterval = setInterval(() => {
+                if (!isHovering) {
+                    nextScreen();
+                }
+            }, 4000);
+        }
+
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+            }
+        }
+
+        function addTouchEvents() {
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (!carouselContainer) return;
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carouselContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carouselContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextScreen(); // Swipe left - next screen
+                    } else {
+                        previousScreen(); // Swipe right - previous screen
+                    }
+                }
+            }
+        }
+
+        // Initialize feature cards animation
+        function initializeFeatureCardsAnimation() {
+            const featureCards = document.querySelectorAll('.feature-card');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated', 'swing-in-top-fwd');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px 100px 0px'
+            });
+
+            featureCards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeCountUpAnimations();
+            initializeLanguageToggle();
+            handleNotificationForm();
+            initializeFeatureCardsAnimation();
+            initializeCarousel();
+
+            // Add click events to app download buttons
+            const appDownloadBtns = document.querySelectorAll('a[href="#get-app"], a[href="#"]');
+            appDownloadBtns.forEach(btn => {
+                if (btn.textContent.includes('앱 다운로드') || btn.textContent.includes('Download App')) {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        openAppModal();
+                    });
+                }
+            });
+
+            // Add click events to helper application buttons
+            const helperBtns = document.querySelectorAll('a[href="#advertise"]');
+            helperBtns.forEach(btn => {
+                if (btn.textContent.includes('도우미 신청') || btn.textContent.includes('Apply as Helper')) {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        openHelperModal();
+                    });
+                }
+            });
+
+            // Add click events to advertise contact buttons
+            const advertiseBtns = document.querySelectorAll('a[href="#advertise"]');
+            advertiseBtns.forEach(btn => {
+                if (btn.textContent.includes('광고 문의') || btn.textContent.includes('Advertise with Us')) {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        openAdvertiseModal();
+                    });
+                }
+            });
+        });
+
+        // Fallback for older browsers
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () {
+                initializeCountUpAnimations();
+                initializeLanguageToggle();
+            });
+        } else {
+            initializeCountUpAnimations();
+            initializeLanguageToggle();
+        }
+    </script>
+</body>
+
+</html>
